@@ -1,6 +1,7 @@
 import pandas as pd
 from collections import Counter
 
+#Author: Ankit Sahu
 #code starts here
 
 #importing the data file 
@@ -100,19 +101,18 @@ for key, value in dict1.items():
           #inserting minimum, maximum, and ending balance value as a list in dictionary to use later
           dict2[c_id+ "/" + monthWithYear] = [mini, maxi, sum1]
 
-dict3 = dict()
-#creating final dictionary dict3 with customer ID as the key and value as month
+finalAnswer = dict()
+#creating final dictionary finalAnswer with customer ID as the key and value as month
 #that will be key for list of value of [minumum, maximum, ending balance]
 for i in customer_IDs:
-  dict3[i] = dict()
+  finalAnswer[i] = dict()
   for key, value in dict2.items():
     str1 = key.split("/")
     date1 = str1[1] + "/" + str1[2]
     if(i == str1[0]):
-      dict_val = dict3[i]
+      dict_val = finalAnswer[i]
       dict_val[date1] = value
 
-print(dict3)
 #creating list for all the required columns customer id, months, minBalance, maxBalance, endingBalance
 #each index in the list corresponds to the one row of customer id, minimum balance, maximum balance, and ending balance
 cust_id = []
@@ -120,7 +120,7 @@ date = []
 minBalance = []
 maxBalance = []
 endingBalance = []
-for key,value in dict3.items():
+for key,value in finalAnswer.items():
   #here key is customer id, and value is a list in which minimum balance, maximum balance, and ending balance are stored
   for key1,value1 in value.items():
     #iterating the list, at each index there are 3 values corresponds to minimum balance, maximum balance, and ending balance
